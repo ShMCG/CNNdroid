@@ -13,13 +13,13 @@ public class ParamUnpacker {
 
     public Object[] unpackerFunction(String paramFilePath, Class[] classTypes) {
 
-        Object[] objects = new Object[2];
+        Object[] objects = new Object[classTypes.length];
         try {
             Unpacker unpacker = read_parameters_MessagePack_Init(paramFilePath);
-            objects[0] = unpacker.read(classTypes[0]);
-            objects[1] = unpacker.read(classTypes[1]);
+            for (int i = 0; i < classTypes.length; ++i) {
+                objects[i] = unpacker.read(classTypes[i]);
+            }
             unpacker.close();
-            unpacker = null;
         } catch (Exception e) {
             Log.d("MessagePack Exception:", e.getMessage());
             return null;
