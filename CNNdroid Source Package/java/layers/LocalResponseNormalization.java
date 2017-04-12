@@ -132,7 +132,7 @@ public class LocalResponseNormalization implements LayerInterface {
                     int thread;
                     for (thread = 0; thread < threadCount ; thread++)
                         if (!threads[thread].done)
-                            break;
+                            continue;
                     if (thread == threadCount)
                         break;
                     try {
